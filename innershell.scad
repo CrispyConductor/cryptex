@@ -1,4 +1,5 @@
 include <sharedparams.scad>
+include <rotate_extrude.scad>
 
 module InnerShell() {
     translate([0, 0, isBaseThick])
@@ -12,10 +13,10 @@ module InnerShell() {
     cylinder(h=isBaseThick, r=osBaseRadius);
         
     // Side ridges
+    sideRidgeProtrusion = isOsClearance + osThick; // how far the ridges protrude from the outer edge of the main cylinder
     module sideRidge() {
-        sideRidgeOuterRadius = isOuterRadius + isOsClearance + osThick;
         rotate([0, 0, -isProngSpanAngle/2])
-            rotate_extrude(angle=isProngSpanAngle)
+            rotate_extrude2(angle=isProngSpanAngle)
                 translate([isInnerRadius, 0])
                     square([isOsClearance + osThick + isThick, isInnerHeight]);
     };
@@ -28,12 +29,12 @@ module InnerShell() {
     // Side prongs
     module prong() {
         // module produces a single prong, at the correct X offset, centered on the X axis, with a bottom Z of 0
-        protrusion = isProngProtrusion;
-        height = protrusion + 2;
+        protrusion = isProngProtrusion - sideRidgeProtrusion;
+        height = prongHeight;
         angle = isProngSpanAngle;
         rotate([0, 0, -angle/2])
-            rotate_extrude(angle=angle)
-                translate([isOuterRadius, 0])
+            rotate_extrude2(angle=angle)
+                translate([isOuterRadius + sideRidgeProtrusion, 0])
                     polygon([
                         [0, 0],
                         [protrusion, protrusion],
@@ -43,7 +44,7 @@ module InnerShell() {
     };
     for (ang = latchAngles)
         rotate([0, 0, ang])
-            for (z = [isBaseThick : ringSpacing : isBaseThick + isInnerHeight - ringSpacing])
+            for (z = [isInnerHeight + isBaseThick - prongHeight : -ringSpacing : isBaseThick])
                 translate([0, 0, z])
                     prong();
 };

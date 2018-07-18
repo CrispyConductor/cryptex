@@ -25,13 +25,16 @@ osOuterRadius = osInnerRadius + osThick;
 osInnerHeight = isInnerHeight;
 osBaseThick = isBaseThick;
 osOuterHeight = osInnerHeight + osBaseThick;
-osBaseRadius = osOuterRadius;
+osBaseOverhang = 2;
+osBaseRadius = osOuterRadius + osBaseOverhang;
 
 // Rings
 ringSpacing = compartmentHeight / numRings;
 osRingClearance = 0.3;
-ringProngProtrusion = 3;
-isProngProtrusion = isOsClearance + osThick + osRingClearance + ringProngProtrusion;
+osProngProtrusion = 3; // Amount lock prongs protrude from the OD of the outer shell
+isProngProtrusion = isOsClearance + osThick + osProngProtrusion; // amount the lock prongs extend from the OD of the inner shell cylinder
+prongHeight = osProngProtrusion + 1; // total height of lock prongs, at the OD of the outer shell
+
 
 // Misc
 latchAngles = [ 0, 180+30, 180-30 ];
