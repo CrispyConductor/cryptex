@@ -1,7 +1,7 @@
 // Main parameters
 compartmentDiameter = 40;
-compartmentHeight = 80;
-numRings = 5;
+compartmentHeight = 30;
+numRings = 2;
 positionLabels = [
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
     "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
@@ -15,6 +15,7 @@ isOuterRadius = isInnerRadius + isThick;
 isInnerHeight = compartmentHeight;
 isBaseThick = 3;
 isOuterHeight = isInnerHeight + isBaseThick;
+isProngSpanAngle = 10; // angular width of the lock prongs
 
 // Outer shell
 isOsClearance = 0.3; // Clearance on radius
@@ -28,6 +29,9 @@ osBaseRadius = osOuterRadius;
 
 // Rings
 ringSpacing = compartmentHeight / numRings;
+osRingClearance = 0.3;
+ringProngProtrusion = 3;
+isProngProtrusion = isOsClearance + osThick + osRingClearance + ringProngProtrusion;
 
 // Misc
 latchAngles = [ 0, 180+30, 180-30 ];
