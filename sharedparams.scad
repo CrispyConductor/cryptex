@@ -52,6 +52,8 @@ prongCoverHeightClearance = 1;
 
 // Misc
 latchAngles = [ 0, 180+30, 180-30 ];
+detentArm1Angle = 90;
+// detentArm2Angle = <opposite angle, rounded to position>
 
 // System
 $fa = 3;

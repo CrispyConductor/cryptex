@@ -24,6 +24,8 @@ module Ring() {
         prongCoverHeight = prongHeight + prongCoverHeightClearance;
         translate([0, 0, ringHeight - prongCoverHeight])
             cylinder(r=ringOuterMinRadius - ringProngCoverThick, h=prongCoverHeight);
+        
+        // Cutouts for detent arms
     };
 };
 
