@@ -2,13 +2,11 @@ include <sharedparams.scad>
 include <rotate_extrude.scad>
 
 module InnerShell() {
-    translate([0, 0, isBaseThick])
-        difference() {
-            // Main cylinder
-            cylinder(h=isInnerHeight, r=isOuterRadius);
-            // Inner cutout
-            cylinder(h=isInnerHeight, r=isInnerRadius);
-        };
+    // Hollow cylinder
+    rotate_extrude()
+        translate([isInnerRadius, isBaseThick])
+            square([isThick, isInnerHeight]);
+
     // Base/cap
     cylinder(h=isBaseThick, r=osBaseRadius);
         

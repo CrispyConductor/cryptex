@@ -27,6 +27,8 @@ osBaseThick = isBaseThick;
 osOuterHeight = osInnerHeight + osBaseThick;
 osBaseOverhang = 2;
 osBaseRadius = osOuterRadius + osBaseOverhang;
+osSlotClearance = 0.3; // Clearance on each side of the fins to the outer shell slots
+osSlotSpanAngle = isProngSpanAngle + 360 * osSlotClearance / (2 * PI * osInnerRadius) * 2;
 
 // Rings
 ringSpacing = compartmentHeight / numRings;

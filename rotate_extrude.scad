@@ -14,7 +14,7 @@ module rotate_extrude2(angle=360, convexity=2, size=1000) {
   angleSupport = (version_num() > 20150399) ? true : false; // Next openscad releases after 2015.03.xx will have support angle parameter
   // Using angle parameter when possible provides huge speed boost, avoids a difference operation
 
-  if (angleSupport) {
+  if (angleSupport || angle == 360) {
     rotate_extrude(angle=angle,convexity=convexity)
       children();
   } else {
