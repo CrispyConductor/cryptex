@@ -13,7 +13,7 @@ module OuterShell() {
             rotate([0, 0, -osSlotSpanAngle/2 + ang])
                 rotate_extrude2(angle=osSlotSpanAngle)
                     translate([0, osBaseThick])
-                        square([1000, osInnerHeight]);
+                        square([1000, 1000]);
     };
     
     // Base
