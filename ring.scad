@@ -3,6 +3,50 @@ use <rotate_extrude.scad>
 use <common.scad>
 
 module Ring() {
+    detentArmSpanAngle = detentArmLength / (2 * PI * ringInnerRadius) * 360;
+    detentKeySpanAngle = detentDepth * 2 / (2 * PI * ringInnerRadius) * 360;
+    
+    module DetentArm() {
+        // Generates detent arm such that detent cylinder is centered on X axis
+        detentArmInnerRadius = ringInnerRadius;
+        detentArmOuterRadius = detentArmInnerRadius + detentArmThick;
+        // Arm
+        difference() {
+            rotate([0, 0, -detentArmSpanAngle + detentKeySpanAngle/2])
+                rotate_extrude2(angle=detentArmSpanAngle)
+                    translate([detentArmInnerRadius, 0])
+                        square([detentArmThick, detentArmHeight]);
+            // Chamfer the end
+            linear_extrude(1000)
+                polygon([
+                    [detentArmOuterRadius, 0],
+                    [0, detentArmOuterRadius],
+                    [detentArmOuterRadius, detentArmOuterRadius]
+                ]);
+        };
+        // Detent key (cylinder)
+        intersection() {
+            translate([detentArmInnerRadius, 0, 0])
+                cylinder(r=detentDepth, h=detentArmHeight);
+            // Clip off any part that extends beyond the detent arm
+            cylinder(r=detentArmOuterRadius, h=detentArmHeight);
+        };
+    };
+    
+    module DetentArmCutout() {
+        cutoutSpanAngle = 80;
+        cutoutDepth = detentArmThick + detentDepth + 0.5;
+        cutoutHeight = detentArmHeight + 0.3;
+        //rotate([0, 0, -cutoutSpanAngle/2])
+            rotate_extrude2(angle=cutoutSpanAngle)
+                polygon([
+                    [0, 0],
+                    [ringInnerRadius + cutoutDepth, 0],
+                    [ringInnerRadius + cutoutDepth, cutoutHeight],
+                    [0, cutoutHeight + ringInnerRadius + cutoutDepth]
+                ]);
+    };
+    
     difference() {
         // Main shape of ring
         linear_extrude(ringHeight)
@@ -26,7 +70,11 @@ module Ring() {
             cylinder(r=ringOuterMinRadius - ringProngCoverThick, h=prongCoverHeight);
         
         // Cutouts for detent arms
+        //rotate([0, 0, 20])
+        DetentArmCutout();
     };
+    
+    !DetentArm();
 };
 
 Ring();

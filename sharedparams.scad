@@ -41,7 +41,7 @@ isProngProtrusion = isOsClearance + osThick + osProngProtrusion; // amount the l
 prongHeight = osProngProtrusion + 1; // total height of lock prongs, at the OD of the outer shell
 ringInnerRadius = osOuterRadius + osRingClearance;
 ringProngEndClearance = 0.3; // Clearance between the end of the prongs and the ring
-ringProngCoverThick = 1.5;
+ringProngCoverThick = 2;
 ringMinThick = osProngProtrusion + ringProngCoverThick + ringProngEndClearance;
 ringOuterMinRadius = ringInnerRadius + ringMinThick;
 ringOuterRadius = ringOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
@@ -50,10 +50,16 @@ ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
 prongCoverHeightClearance = 1;
 
+// Detents
+detentDepth = 1.5;  // radius of detent cylindrical depressions
+detentArm1Angle = 90; // Angle of the part of the arm that actually contacts the detent
+detentArm2Angle = (numPositions % 2 == 0) ? detentArm1Angle + 180 : detentArm1Angle + 180 - (360 / numPositions / 2); 
+detentArmHeight = 3;
+detentArmThick = 1.5;
+detentArmLength = 20;
+
 // Misc
 latchAngles = [ 0, 180+30, 180-30 ];
-detentArm1Angle = 90;
-// detentArm2Angle = <opposite angle, rounded to position>
 
 // System
 $fa = 3;
