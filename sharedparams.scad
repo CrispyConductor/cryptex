@@ -13,7 +13,7 @@ numPositions = len(positionLabels);
 
 // Inner shell
 isInnerRadius = compartmentDiameter / 2;
-isThick = 1.5;
+isThick = 2;
 isOuterRadius = isInnerRadius + isThick;
 isInnerHeight = compartmentHeight;
 isBaseThick = 3;
@@ -23,7 +23,7 @@ isProngSpanAngle = 10; // angular width of the lock prongs
 // Outer shell
 isOsClearance = 0.3; // Clearance on radius
 osInnerRadius = isOuterRadius + isOsClearance;
-osThick = 1.5;
+osThick = 2;
 osOuterRadius = osInnerRadius + osThick;
 osInnerHeight = isInnerHeight;
 osBaseThick = isBaseThick;
@@ -51,7 +51,7 @@ ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringI
 prongCoverHeightClearance = 1;
 
 // Detents
-detentDepth = 1.5;  // radius of detent cylindrical depressions
+detentDepth = 0.85;  // radius of detent cylindrical depressions
 detentArm1Angle = 90; // Angle of the part of the arm that actually contacts the detent
 detentArm2Angle = (numPositions % 2 == 0) ? detentArm1Angle + 180 : detentArm1Angle + 180 - (360 / numPositions / 2); 
 detentArmHeight = 3;

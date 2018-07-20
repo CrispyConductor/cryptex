@@ -14,6 +14,12 @@ module OuterShell() {
                 rotate_extrude2(angle=osSlotSpanAngle)
                     translate([0, osBaseThick])
                         square([1000, 1000]);
+        
+        // Detents
+        for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
+            rotate([0, 0, ang])
+                translate([osOuterRadius, 0, osBaseThick])
+                    cylinder(r=detentDepth, h=1000);
     };
     
     // Base

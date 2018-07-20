@@ -34,10 +34,14 @@ module Ring() {
     };
     
     module DetentArmCutout() {
-        cutoutSpanAngle = 80;
-        cutoutDepth = detentArmThick + detentDepth + 0.5;
-        cutoutHeight = detentArmHeight + 0.3;
-        //rotate([0, 0, -cutoutSpanAngle/2])
+        cutoutSpanClearanceLength = 1;
+        cutoutDepthClearance = 0.5;
+        cutoutHeightClearance = 0.3;
+        cutoutSpanClearanceAngle = cutoutSpanClearanceLength / (2 * PI * ringInnerRadius) * 360;
+        cutoutSpanAngle = detentArmSpanAngle + cutoutSpanClearanceAngle;
+        cutoutDepth = detentArmThick + detentDepth + cutoutDepthClearance;
+        cutoutHeight = detentArmHeight + cutoutHeightClearance;
+        rotate([0, 0, -detentArmSpanAngle + detentKeySpanAngle/2])
             rotate_extrude2(angle=cutoutSpanAngle)
                 polygon([
                     [0, 0],
@@ -70,11 +74,19 @@ module Ring() {
             cylinder(r=ringOuterMinRadius - ringProngCoverThick, h=prongCoverHeight);
         
         // Cutouts for detent arms
-        //rotate([0, 0, 20])
-        DetentArmCutout();
+        rotate([0, 0, detentArm1Angle])
+            DetentArmCutout();
+        rotate([0, 0, detentArm2Angle])
+            mirror([0, 1, 0])
+                DetentArmCutout();
     };
     
-    !DetentArm();
+    // Detent arms
+    rotate([0, 0, detentArm1Angle])
+        DetentArm();
+    rotate([0, 0, detentArm2Angle])
+        mirror([0, 1, 0])
+            DetentArm();
 };
 
 Ring();

@@ -18,10 +18,18 @@ module InnerShell() {
                 translate([isInnerRadius, 0])
                     square([isOsClearance + osThick + isThick, isInnerHeight]);
     };
-    for (ang = latchAngles)
-        rotate([0, 0, ang])
-            translate([0, 0, isBaseThick])
-                sideRidge();
+    difference() {
+        // Ridges
+        for (ang = latchAngles)
+            rotate([0, 0, ang])
+                translate([0, 0, isBaseThick])
+                    sideRidge();
+        // Detents in ridges
+        for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
+            rotate([0, 0, ang])
+                translate([isOuterRadius+sideRidgeProtrusion, 0, isBaseThick])
+                    cylinder(r=detentDepth, h=1000);
+    };
     
         
     // Side prongs
@@ -32,11 +40,12 @@ module InnerShell() {
         angle = isProngSpanAngle;
         rotate([0, 0, -angle/2])
             rotate_extrude2(angle=angle)
-                translate([isOuterRadius + sideRidgeProtrusion, 0])
+                translate([isOuterRadius, 0])
                     polygon([
-                        [0, 0],
-                        [protrusion, protrusion],
-                        [protrusion, height],
+                        [0, -sideRidgeProtrusion],
+                        [sideRidgeProtrusion, 0],
+                        [isProngProtrusion, protrusion],
+                        [isProngProtrusion, height],
                         [0, height]
                     ]);
     };
