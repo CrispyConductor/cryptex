@@ -52,7 +52,7 @@ module InnerShell() {
     for (ang = latchAngles)
         rotate([0, 0, ang])
             for (z = [isInnerHeight + isBaseThick - prongHeight : -ringSpacing : isBaseThick])
-                translate([0, 0, z])
+                translate([0, 0, z + isProngOffsetZ])
                     prong();
 };
 

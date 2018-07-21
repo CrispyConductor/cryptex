@@ -9,8 +9,9 @@ module OuterShell() {
                 square([osThick, osInnerHeight]);
         
         // Slots
+        // angles are mirrored because this is in opposing direction to other parts
         for (ang = latchAngles)
-            rotate([0, 0, -osSlotSpanAngle/2 + ang])
+            rotate([0, 0, -osSlotSpanAngle/2 + -ang])
                 rotate_extrude2(angle=osSlotSpanAngle)
                     translate([0, osBaseThick])
                         square([1000, 1000]);

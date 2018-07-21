@@ -69,9 +69,19 @@ module Ring() {
                     square([slotOuterRadius, 1000]);
         
         // Cutout for prong cover
-        prongCoverHeight = prongHeight + prongCoverHeightClearance;
+        prongCoverHeight = prongHeight + prongCoverHeightClearance - isProngOffsetZ;
+        prongCoverInnerRadius = ringOuterMinRadius - ringProngCoverThick;
         translate([0, 0, ringHeight - prongCoverHeight])
-            cylinder(r=ringOuterMinRadius - ringProngCoverThick, h=prongCoverHeight);
+            difference() {
+                cylinder(r=prongCoverInnerRadius, h=prongCoverHeight);
+                // wedge shape
+                rotate_extrude()
+                    polygon([
+                        [ringInnerRadius, 0],
+                        [prongCoverInnerRadius, 0],
+                        [prongCoverInnerRadius, prongCoverInnerRadius - ringInnerRadius]
+                    ]);
+            };
         
         // Cutouts for detent arms
         rotate([0, 0, detentArm1Angle])

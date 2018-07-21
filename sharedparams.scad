@@ -19,6 +19,7 @@ isInnerHeight = compartmentHeight;
 isBaseThick = 3;
 isOuterHeight = isInnerHeight + isBaseThick;
 isProngSpanAngle = 10; // angular width of the lock prongs
+isProngOffsetZ = -1; // vertical clearance between each ring and the prongs below it in locked position
 
 // Outer shell
 isOsClearance = 0.3; // Clearance on radius
@@ -28,8 +29,6 @@ osOuterRadius = osInnerRadius + osThick;
 osInnerHeight = isInnerHeight;
 osBaseThick = isBaseThick;
 osOuterHeight = osInnerHeight + osBaseThick;
-osBaseOverhang = 2;
-osBaseRadius = osOuterRadius + osBaseOverhang;
 osSlotClearance = 0.3; // Clearance on each side of the fins to the outer shell slots
 osSlotSpanAngle = isProngSpanAngle + 360 * osSlotClearance / (2 * PI * osInnerRadius) * 2;
 
@@ -56,10 +55,12 @@ detentArm1Angle = 90; // Angle of the part of the arm that actually contacts the
 detentArm2Angle = (numPositions % 2 == 0) ? detentArm1Angle + 180 : detentArm1Angle + 180 - (360 / numPositions / 2); 
 detentArmHeight = 3;
 detentArmThick = 1.5;
-detentArmLength = 20;
+detentArmLength = 15;
+
+osBaseRadius = ringOuterMinRadius;
 
 // Misc
-latchAngles = [ 0, 180+30, 180-30 ];
+latchAngles = [ 0, 180+30, 180-40 ];
 
 // System
 $fa = 3;
