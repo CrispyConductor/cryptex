@@ -11,6 +11,14 @@ positionLabels = [
 ];
 numPositions = len(positionLabels);
 
+// Lock ring
+lockRingHeight = 3;
+lockRingHeightClearance = 0.3; // clearance for rings to rotate against each other
+lockRingActualHeight = lockRingHeight - lockRingHeightClearance;
+lockRingFingerAngles = [60, 180, 300];
+lockRingFingerWidth = 3;
+lockRingSlotWidthClearance = 0.3;
+
 // Inner shell
 isInnerRadius = compartmentDiameter / 2;
 isThick = 2;
@@ -32,8 +40,10 @@ osOuterHeight = osInnerHeight + osBaseThick;
 osSlotClearance = 0.3; // Clearance on each side of the fins to the outer shell slots
 osSlotSpanAngle = isProngSpanAngle + 360 * osSlotClearance / (2 * PI * osInnerRadius) * 2;
 
+lockRingSpanAngle = lockRingHeight / (2 * PI * osOuterRadius) * 360;
+
 // Rings
-ringSpacing = compartmentHeight / numRings;
+ringSpacing = (isInnerHeight - lockRingHeight) / numRings;
 osRingClearance = 0.3;
 osProngProtrusion = 3; // Amount lock prongs protrude from the OD of the outer shell
 isProngProtrusion = isOsClearance + osThick + osProngProtrusion; // amount the lock prongs extend from the OD of the inner shell cylinder
@@ -44,10 +54,11 @@ ringProngCoverThick = 2;
 ringMinThick = osProngProtrusion + ringProngCoverThick + ringProngEndClearance;
 ringOuterMinRadius = ringInnerRadius + ringMinThick;
 ringOuterRadius = ringOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
-ringHeight = isInnerHeight / numRings;
+ringHeight = ringSpacing;
 ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
 prongCoverHeightClearance = 1;
+lockSlotOuterRadius = osOuterRadius + osProngProtrusion + ringProngEndClearance; // outer radius of slots for lock prongs
 
 // Detents
 detentDepth = 0.85;  // radius of detent cylindrical depressions

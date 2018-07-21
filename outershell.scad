@@ -1,7 +1,19 @@
 include <sharedparams.scad>
 include <rotate_extrude.scad>
+include <common.scad>
 
 module OuterShell() {
+    lockRingSlotHeight = lockRingActualHeight;
+    module LockRingSlot() {
+        LockRingFinger(
+            width=lockRingFingerWidth+lockRingSlotWidthClearance,
+            innerRadius=osInnerRadius * 0.9,
+            outerRadius=osOuterRadius * 1.1,
+            height=lockRingActualHeight,
+            spanAngle=-lockRingSpanAngle
+        );
+    };
+    
     difference() {
         // Hollow cylinder
         rotate_extrude2()
@@ -21,6 +33,12 @@ module OuterShell() {
             rotate([0, 0, ang])
                 translate([osOuterRadius, 0, osBaseThick])
                     cylinder(r=detentDepth, h=1000);
+        
+        // Lock ring slots
+        for (ang = lockRingFingerAngles)
+            translate([0, 0, osInnerHeight + osBaseThick - lockRingSlotHeight])
+                rotate([0, 0, -ang])
+                    LockRingSlot();
     };
     
     // Base

@@ -12,3 +12,13 @@ module RegularPolygon(numCorners, outerRadius) {
 function regularPolygonInnerRadiusMultiplier(numCorners) =
     let (pt = ([1, 0] + [cos(1 / numCorners * 360), sin(1 / numCorners * 360)]) / 2)
         sqrt(pt[0]*pt[0] + pt[1]*pt[1]);
+
+// width is gap width of slot (Y axis)
+module LockRingFinger(width, innerRadius, outerRadius, height, spanAngle) {
+    rotate([0, 0, spanAngle/2])
+        linear_extrude(height=height, twist=spanAngle)
+            translate([innerRadius, -width/2])
+                square([outerRadius - innerRadius, width]);
+};
+
+//LockRingFinger(3, 20, 23, 3, 15);

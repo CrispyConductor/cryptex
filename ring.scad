@@ -62,14 +62,13 @@ module Ring() {
             };
         
         // Slots for lock prongs
-        slotOuterRadius = osOuterRadius + osProngProtrusion + ringProngEndClearance;
         for (ang = latchAngles)
             rotate([0, 0, -ringSlotSpanAngle/2 + ang])
                 rotate_extrude2(angle=ringSlotSpanAngle)
-                    square([slotOuterRadius, 1000]);
+                    square([lockSlotOuterRadius, 1000]);
         
         // Cutout for prong cover
-        prongCoverHeight = prongHeight + prongCoverHeightClearance - isProngOffsetZ;
+        prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
         prongCoverInnerRadius = ringOuterMinRadius - ringProngCoverThick;
         translate([0, 0, ringHeight - prongCoverHeight])
             difference() {
