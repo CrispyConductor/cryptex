@@ -29,10 +29,10 @@ module OuterShell() {
                             cylinder(r=detentDepth, h=1000);
             };
             
-            // Add slight chamfer at bottom for strength
+            // Add slight chamfer at bottom for strength, inside of detents
             difference() {
                 translate([0, 0, osBaseThick])
-                    cylinder(r1=ringInnerRadius, r2=osInnerRadius, h=ringInnerRadius-osInnerRadius);
+                    cylinder(r1=osOuterRadius, r2=osInnerRadius, h=osOuterRadius-osInnerRadius);
                 cylinder(r=osInnerRadius, h=1000);
             };
         };
