@@ -16,7 +16,7 @@ function regularPolygonInnerRadiusMultiplier(numCorners) =
 // width is gap width of slot (Y axis)
 module LockRingFinger(width, innerRadius, outerRadius, height, spanAngle) {
     rotate([0, 0, spanAngle/2])
-        linear_extrude(height=height, twist=spanAngle)
+        linear_extrude(height=height, twist=spanAngle, slices=height*10)
             translate([innerRadius, -width/2])
                 square([outerRadius - innerRadius, width]);
 };
