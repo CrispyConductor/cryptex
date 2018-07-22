@@ -12,10 +12,10 @@ module LockRing() {
             };
             
             // Inner detent cylinders
-            for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
+            /*for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
                 rotate([0, 0, ang])
                     translate([ringInnerRadius, 0, 0])
-                        cylinder(r=detentDepth, h=lockRingActualHeight);
+                        cylinder(r=detentDepth, h=lockRingActualHeight);*/
             
             // Lock fingers
              for (ang = lockRingFingerAngles)
@@ -25,7 +25,7 @@ module LockRing() {
                         innerRadius=osInnerRadius,
                         outerRadius=(ringInnerRadius+osBaseRadius)/2,
                         height=lockRingActualHeight,
-                        spanAngle=lockRingSpanAngle
+                        spanAngle=-lockRingSpanAngle
                     );
         };
         
