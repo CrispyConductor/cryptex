@@ -36,13 +36,15 @@ module LabelRing() {
                 RegularPolygon(numCorners=numPositions, outerRadius=labelRingInnerMinRadius, faceOnXAxis=true);
                 
         // Labels
+        reverseOrder = true;
         labelSize = 2 * PI * labelRingOuterMinRadius / numPositions / 2;
         for (labelNum = [0 : numPositions - 1])
-            rotate([0, 0, -labelNum * 360/numPositions])
+            rotate([0, 0, (reverseOrder ? 1 : -1) * labelNum * 360/numPositions])
                 translate([labelRingOuterMinRadius, 0, labelRingHeight/2])
-                    rotate([0, 90, 0])
-                        linear_extrude(labelDepth*2, center=true)
-                            text(text=positionLabels[labelNum], size=labelSize, halign="center", valign="center");
+                    rotate([reverseOrder ? 180 : 0, 0, 0])
+                        rotate([0, 90, 0])
+                            linear_extrude(labelDepth*2, center=true)
+                                text(text=positionLabels[labelNum], size=labelSize, halign="center", valign="center");
         
         // Top marker dot
         translate([(labelRingOuterMinRadius+labelRingInnerBufferMinRadius)/2, 0, labelRingHeight-topMarkerDotDepth])
