@@ -4,10 +4,10 @@
 compartmentDiameter = 40;
 
 // Height of inner compartment
-compartmentHeight = 30;
+compartmentHeight = 70;
 
 // Number of rotating rings
-numRings = 2;
+numRings = 5;
 
 // Labels on rings, also determines number of positions
 positionLabelsStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

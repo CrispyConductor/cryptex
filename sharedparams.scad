@@ -66,7 +66,7 @@ ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
 prongCoverHeightClearance = 0.6; // amount shells will open before prongs engage on rings
 lockSlotOuterRadius = osOuterRadius + osProngProtrusion + ringProngEndClearance; // outer radius of slots for lock prongs
-falseLockSlotDepth = 0.2; // depth of false lock slots to make cracking more difficult
+falseLockSlotDepth = 0.3; // depth of false lock slots to make cracking more difficult
 prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
 
 // Detents
@@ -81,8 +81,8 @@ detentArmHeightIdeal = ringOuterRadius * 0.1; // depends on radius, so as torque
 detentArmHeight = max(detentArmHeightMin, min(detentArmHeightMax, detentArmHeightIdeal));
 
 // Label rings
-labelRingRingClearanceMax = 0.6; // clearance tapers to allow for easier press fit
-labelRingRingClearanceMin = 0.4;
+labelRingRingClearanceMax = 0.3; // clearance tapers to allow for easier press fit
+labelRingRingClearanceMin = 0.2;
 labelRingMinThick = 2;
 labelRingHeight = ringHeight;
 labelRingInnerHeight = labelRingHeight * 0.8; // thickness/height tapers to prevent label rings from slipping vertically
