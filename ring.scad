@@ -88,6 +88,12 @@ module Ring() {
         rotate([0, 0, detentArm2Angle])
             mirror([0, 1, 0])
                 DetentArmCutout();
+        
+        // Spherical sockets for label ring to snap into
+        for (ang = [0 : 360/numPositions : 360])
+            rotate([0, 0, ang])
+                translate([ringOuterMinRadius, 0, ringHeight/2])
+                    sphere(r=labelRingKeySphereRadius);
     };
     
     // Detent arms

@@ -9,6 +9,7 @@ positionLabels = [
     "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
     "U", "V", "W", "X", "Y", "Z"
 ];
+//positionLabels = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" ];
 numPositions = len(positionLabels);
 
 // Lock ring
@@ -71,15 +72,20 @@ detentArmThick = 1.5;
 detentArmLength = 15;
 
 // Label rings
-labelRingRingClearanceMax = 0.2; // clearance tapers to allow for easier press fit
-labelRingRingClearanceMin = 0.05;
-labelRingThick = 3;
+labelRingRingClearanceMax = 0.6; // clearance tapers to allow for easier press fit
+labelRingRingClearanceMin = 0.4;
+labelRingMinThick = 2;
 labelRingHeight = ringHeight;
 labelRingInnerHeight = labelRingHeight * 0.8; // thickness/height tapers to prevent label rings from slipping vertically
 labelRingInnerMinRadius = ringOuterMinRadius + labelRingRingClearanceMin;
 labelRingInnerRadius = labelRingInnerMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
-labelRingOuterMinRadius = labelRingInnerMinRadius + labelRingThick;
+labelRingInnerBufferMinRadius = max(labelRingInnerMinRadius, ringOuterRadius + osRingClearance + labelRingRingClearanceMax); // inner radius on the top and bottom of label ring to prevent engaging adjacent rings if they slide
+labelRingInnerBufferRadius = labelRingInnerBufferMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
+labelRingInnerBufferHeight = labelRingHeight / 6;
+labelRingContactHeight = labelRingHeight / 3; // amount of label ring in contact with ring (tapering from clearanceMax to clearanceMin)
+labelRingOuterMinRadius = max(labelRingInnerMinRadius, labelRingInnerBufferMinRadius) + labelRingMinThick;
 labelRingOuterRadius = labelRingOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
+labelRingKeySphereRadius = labelRingRingClearanceMax + 0.1;
 
 osBaseRadius = labelRingOuterMinRadius;
 //lockRingDetentRadius = lockRingDetentOsProtrusion + osRingClearance;
