@@ -12,12 +12,13 @@ positionLabels = [
 numPositions = len(positionLabels);
 
 // Lock ring
-lockRingHeight = 3;
-lockRingHeightClearance = 0; // clearance for rings to rotate against each other, in addition to ring height clearance
+lockRingHeight = 4;
+lockRingHeightClearance = 0.2; // clearance for rings to rotate against each other, in addition to ring height clearance
 lockRingActualHeight = lockRingHeight - lockRingHeightClearance;
 lockRingFingerAngles = [60, 180, 300];
 lockRingFingerWidth = 3;
 lockRingSlotWidthClearance = 0.6;
+lockRingDetentOsProtrusion = 0.3; // amount lock ring detents protrude into the outer shell
 
 // Inner shell
 isInnerRadius = compartmentDiameter / 2;
@@ -69,7 +70,20 @@ detentArmHeight = 3;
 detentArmThick = 1.5;
 detentArmLength = 15;
 
-osBaseRadius = ringOuterMinRadius;
+// Label rings
+labelRingRingClearanceMax = 0.2; // clearance tapers to allow for easier press fit
+labelRingRingClearanceMin = 0.05;
+labelRingThick = 3;
+labelRingHeight = ringHeight;
+labelRingInnerHeight = labelRingHeight * 0.8; // thickness/height tapers to prevent label rings from slipping vertically
+labelRingInnerMinRadius = ringOuterMinRadius + labelRingRingClearanceMin;
+labelRingInnerRadius = labelRingInnerMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
+labelRingOuterMinRadius = labelRingInnerMinRadius + labelRingThick;
+labelRingOuterRadius = labelRingOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
+
+osBaseRadius = labelRingOuterMinRadius;
+//lockRingDetentRadius = lockRingDetentOsProtrusion + osRingClearance;
+lockRingDetentRadius = detentDepth;
 
 // Misc
 latchAngles = [ 0, 180+30, 180-40 ];

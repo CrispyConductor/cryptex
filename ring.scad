@@ -55,8 +55,8 @@ module Ring() {
         // Main shape of ring
         linear_extrude(ringHeight)
             difference() {
-                // Outer polygon
-                RegularPolygon(numCorners=numPositions, outerRadius=ringOuterRadius);
+                // Outer polygon, rotated such that a face is centered on the X axis
+                RegularPolygon(numCorners=numPositions, outerRadius=ringOuterRadius, faceOnXAxis=true);
                 // Center cavity
                 circle(r=ringInnerRadius);
             };

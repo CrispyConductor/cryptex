@@ -1,11 +1,15 @@
 
 // Polygon is centered on origin, with "first" point along X axis
-module RegularPolygon(numCorners, outerRadius) {
+module RegularPolygon(numCorners, outerRadius, faceOnXAxis=false) {
     points = [
         for (pointNum = [0 : numCorners - 1])
             [cos(pointNum / numCorners * 360) * outerRadius, sin(pointNum / numCorners * 360) * outerRadius]
     ];
-    polygon(points);
+    if (faceOnXAxis)
+        rotate([0, 0, 360/numCorners/2])
+            polygon(points);
+    else
+        polygon(points);
 };
 
 // Returns multipler to get inner radius (closest distance to origin) from a regular polygon with outer radius of 1

@@ -3,13 +3,13 @@ include <rotate_extrude.scad>
 include <common.scad>
 
 module OuterShell() {
-    lockRingSlotHeight = lockRingActualHeight;
+    lockRingSlotHeight = lockRingHeight;
     module LockRingSlot() {
         LockRingFinger(
             width=lockRingFingerWidth+lockRingSlotWidthClearance,
             innerRadius=osInnerRadius * 0.9,
             outerRadius=osOuterRadius * 1.1,
-            height=lockRingActualHeight,
+            height=lockRingSlotHeight,
             spanAngle=-lockRingSpanAngle
         );
     };
@@ -29,10 +29,10 @@ module OuterShell() {
                             cylinder(r=detentDepth, h=1000);
             };
             
-            // Add slight chamfer at bottom for strength, inside of detents
+            // Add chamfer at bottom (fits into chamfered prong cover on ring)
             difference() {
                 translate([0, 0, osBaseThick])
-                    cylinder(r1=osOuterRadius, r2=osInnerRadius, h=osOuterRadius-osInnerRadius);
+                    cylinder(r1=osOuterRadius+osProngProtrusion, r2=osInnerRadius, h=osOuterRadius+osProngProtrusion-osInnerRadius);
                 cylinder(r=osInnerRadius, h=1000);
             };
         };
