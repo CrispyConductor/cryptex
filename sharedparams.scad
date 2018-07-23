@@ -37,7 +37,7 @@ osInnerRadius = isOuterRadius + isOsClearance;
 osThick = 2;
 osOuterRadius = osInnerRadius + osThick;
 osInnerHeight = isInnerHeight;
-osBaseThick = isBaseThick;
+osBaseThick = isBaseThick + lockRingHeight;
 osOuterHeight = osInnerHeight + osBaseThick;
 osSlotClearance = 0.3; // Clearance on each side of the fins to the outer shell slots
 osSlotSpanAngle = isProngSpanAngle + 360 * osSlotClearance / (2 * PI * osInnerRadius) * 2;
@@ -97,6 +97,9 @@ lockRingPinRadius = (osBaseRadius - ringInnerRadius) / 4;
 lockRingPinX = (osBaseRadius + ringInnerRadius) / 2;
 lockRingPinClearance = 0.25;
 lockRingPinHeight = lockRingActualHeight * 0.9;
+
+topMarkerDotRadius = 0.5;
+topMarkerDotDepth = 0.4;
 
 // Misc
 latchAngles = [ 0, 180+30, 180-40 ];

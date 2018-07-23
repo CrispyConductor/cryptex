@@ -94,6 +94,21 @@ module Ring() {
             rotate([0, 0, ang])
                 translate([ringOuterMinRadius, 0, ringHeight/2])
                     sphere(r=labelRingKeySphereRadius);
+        
+        // Circle to label primary position
+        circThickness = 0.4;
+        circDepth = 0.5;
+        circRadius = 2 * PI * ringOuterMinRadius / numPositions / 2 * 0.85;
+        translate([ringOuterMinRadius, 0, ringHeight/2])
+            rotate([0, 90])
+                difference() {
+                    cylinder(r=circRadius, h=circDepth*2, center=true);
+                    cylinder(r=circRadius-circThickness, h=circDepth*2, center=true);
+                };
+        
+        // Top marker dot
+        translate([ringOuterMinRadius-ringProngCoverThick/2, 0, ringHeight-topMarkerDotDepth])
+            cylinder(r=topMarkerDotRadius, h=topMarkerDotDepth);
     };
     
     // Detent arms

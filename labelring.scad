@@ -29,7 +29,7 @@ module LabelRing() {
             linear_extrude(bufferTaperHeight, scale=topBufferTaperScale)
                 RegularPolygon(numCorners=numPositions, outerRadius=topBufferTaperMinRadius, faceOnXAxis=true);
         
-        // Internal (contact) taper from min clearance to max clearance
+        // Internal (contact) taper from min clearance (at bottom) to max clearance
         contactScale = topBufferTaperMinRadius / labelRingInnerMinRadius;
         translate([0, 0, labelRingInnerBufferHeight + bufferTaperHeight])
             linear_extrude(labelRingContactHeight, scale=contactScale)
@@ -43,6 +43,10 @@ module LabelRing() {
                     rotate([0, 90, 0])
                         linear_extrude(labelDepth*2, center=true)
                             text(text=positionLabels[labelNum], size=labelSize, halign="center", valign="center");
+        
+        // Top marker dot
+        translate([(labelRingOuterMinRadius+labelRingInnerBufferMinRadius)/2, 0, labelRingHeight-topMarkerDotDepth])
+            cylinder(r=topMarkerDotRadius, h=topMarkerDotDepth);
     };
     
     // Key spheres

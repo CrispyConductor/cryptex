@@ -51,6 +51,10 @@ module LockRing() {
             rotate([0, 0, ang])
                 translate([lockRingPinX, 0, 0])
                     cylinder(r=lockRingPinRadius+lockRingPinClearance, h=1000);
+        
+        // Top marker dot
+        translate([(osBaseRadius+lockSlotOuterRadius)/2, 0, lockRingActualHeight-topMarkerDotDepth])
+            cylinder(r=topMarkerDotRadius, h=topMarkerDotDepth);
     };
 };
 

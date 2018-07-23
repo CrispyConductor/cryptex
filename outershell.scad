@@ -53,7 +53,17 @@ module OuterShell() {
     };
     
     // Base
-    cylinder(h=osBaseThick, r=osBaseRadius);
+    difference() {
+        cylinder(h=osBaseThick, r=osBaseRadius);
+        // Circle around base for symmetry with lock ring separation point
+        circHeight = 0.3;
+        circDepth = 0.3;
+        translate([0, 0, isBaseThick-circHeight/2])
+            difference() {
+                cylinder(r=osBaseRadius, h=circHeight);
+                cylinder(r=osBaseRadius-circDepth, h=circHeight);
+            };
+    };
 };
 
 OuterShell();
