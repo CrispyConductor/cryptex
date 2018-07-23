@@ -63,7 +63,7 @@ module Ring() {
         prongCoverInnerRadius = ringOuterMinRadius - ringProngCoverThick;
         translate([0, 0, ringHeight - prongCoverHeight + zOffset])
             difference() {
-                cylinder(r=prongCoverInnerRadius, h=prongCoverHeight);
+                cylinder(r=prongCoverInnerRadius, h=prongCoverHeight+1000);
                 // wedge shape
                 rotate_extrude()
                     polygon([
