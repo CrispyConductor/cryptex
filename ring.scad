@@ -59,7 +59,6 @@ module Ring() {
     };
     
     module ProngCoverCutout(zOffset=0) {
-        prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
         prongCoverInnerRadius = ringOuterMinRadius - ringProngCoverThick;
         translate([0, 0, ringHeight - prongCoverHeight + zOffset])
             difference() {

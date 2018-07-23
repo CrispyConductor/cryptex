@@ -63,14 +63,18 @@ ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringI
 prongCoverHeightClearance = 0.6; // amount shells will open before prongs engage on rings
 lockSlotOuterRadius = osOuterRadius + osProngProtrusion + ringProngEndClearance; // outer radius of slots for lock prongs
 falseLockSlotDepth = 0.2; // depth of false lock slots to make cracking more difficult
+prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
 
 // Detents
 detentDepth = 0.85;  // radius of detent cylindrical depressions
 detentArm1Angle = 90; // Angle of the part of the arm that actually contacts the detent
 detentArm2Angle = (numPositions % 2 == 0) ? detentArm1Angle + 180 : detentArm1Angle + 180 - (360 / numPositions / 2); 
-detentArmHeight = 3;
 detentArmThick = 1.5;
 detentArmLength = min(15, ringInnerRadius * 1.3);
+detentArmHeightMin = 1;
+detentArmHeightMax = ringHeight - prongCoverHeight - detentArmThick - detentDepth - 0.5;
+detentArmHeightIdeal = ringOuterRadius * 0.1; // depends on radius, so as torque increases, resistance linearly increases
+detentArmHeight = max(detentArmHeightMin, min(detentArmHeightMax, detentArmHeightIdeal));
 
 // Label rings
 labelRingRingClearanceMax = 0.6; // clearance tapers to allow for easier press fit
