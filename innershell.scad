@@ -55,6 +55,13 @@ module InnerShell() {
             for (z = [isInnerHeight + isBaseThick - prongHeight : -ringSpacing : isBaseThick + lockRingHeight])
                 translate([0, 0, z + isProngOffsetZ])
                     prong();
+            
+    // Pins that interlock with lock ring
+    // Pin holes that lock with inner shell
+    for (ang = lockRingPinAngles)
+        rotate([0, 0, ang])
+            translate([lockRingPinX, 0, isBaseThick])
+                cylinder(r=lockRingPinRadius, h=lockRingPinHeight);
 };
 
 InnerShell();

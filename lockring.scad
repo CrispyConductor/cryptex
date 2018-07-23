@@ -45,6 +45,12 @@ module LockRing() {
             rotate([0, 0, -slotSpanAngle/2 + ang])
                 rotate_extrude2(angle=slotSpanAngle)
                     square([lockSlotOuterRadius, 1000]);
+        
+        // Pin holes that lock with inner shell
+        for (ang = lockRingPinAngles)
+            rotate([0, 0, ang])
+                translate([lockRingPinX, 0, 0])
+                    cylinder(r=lockRingPinRadius+lockRingPinClearance, h=1000);
     };
 };
 

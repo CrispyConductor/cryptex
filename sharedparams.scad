@@ -86,10 +86,17 @@ labelRingContactHeight = labelRingHeight / 3; // amount of label ring in contact
 labelRingOuterMinRadius = max(labelRingInnerMinRadius, labelRingInnerBufferMinRadius) + labelRingMinThick;
 labelRingOuterRadius = labelRingOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
 labelRingKeySphereRadius = labelRingRingClearanceMax + 0.1;
+labelDepth = 0.5;
 
 osBaseRadius = labelRingOuterMinRadius;
 //lockRingDetentRadius = lockRingDetentOsProtrusion + osRingClearance;
 lockRingDetentRadius = detentDepth;
+
+lockRingPinAngles = lockRingFingerAngles;
+lockRingPinRadius = (osBaseRadius - ringInnerRadius) / 4;
+lockRingPinX = (osBaseRadius + ringInnerRadius) / 2;
+lockRingPinClearance = 0.25;
+lockRingPinHeight = lockRingActualHeight * 0.9;
 
 // Misc
 latchAngles = [ 0, 180+30, 180-40 ];
