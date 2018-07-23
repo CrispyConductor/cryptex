@@ -13,17 +13,17 @@ positionLabels = [
 numPositions = len(positionLabels);
 
 // Lock ring
-lockRingHeight = 4;
+lockRingHeight = max(compartmentDiameter/10, 4);
 lockRingHeightClearance = 0.2; // clearance for rings to rotate against each other, in addition to ring height clearance
 lockRingActualHeight = lockRingHeight - lockRingHeightClearance;
 lockRingFingerAngles = [60, 180, 300];
-lockRingFingerWidth = 3;
+lockRingFingerWidth = compartmentDiameter * 0.075;
 lockRingSlotWidthClearance = 0.6;
-lockRingDetentOsProtrusion = 0.3; // amount lock ring detents protrude into the outer shell
+//lockRingDetentOsProtrusion = 0.3; // amount lock ring detents protrude into the outer shell
 
 // Inner shell
 isInnerRadius = compartmentDiameter / 2;
-isThick = 2;
+isThick = max(compartmentDiameter/20, 2);
 isOuterRadius = isInnerRadius + isThick;
 isInnerHeight = compartmentHeight;
 isBaseThick = 3;
@@ -34,7 +34,7 @@ isProngOffsetZ = -1; // vertical clearance between each ring and the prongs belo
 // Outer shell
 isOsClearance = 0.3; // Clearance on radius
 osInnerRadius = isOuterRadius + isOsClearance;
-osThick = 2;
+osThick = max(compartmentDiameter/20, min(compartmentHeight/15, 3.2), 2);
 osOuterRadius = osInnerRadius + osThick;
 osInnerHeight = isInnerHeight;
 osBaseThick = isBaseThick + lockRingHeight;
@@ -47,7 +47,7 @@ lockRingSpanAngle = lockRingHeight / (2 * PI * osOuterRadius) * 360;
 // Rings
 ringSpacing = (isInnerHeight - lockRingHeight) / numRings;
 osRingClearance = 0.3;
-osProngProtrusion = 3; // Amount lock prongs protrude from the OD of the outer shell
+osProngProtrusion = compartmentDiameter * 0.075; // Amount lock prongs protrude from the OD of the outer shell
 isProngProtrusion = isOsClearance + osThick + osProngProtrusion; // amount the lock prongs extend from the OD of the inner shell cylinder
 prongHeight = osProngProtrusion + 1; // total height of lock prongs, at the OD of the outer shell
 ringInnerRadius = osOuterRadius + osRingClearance;
@@ -70,7 +70,7 @@ detentArm1Angle = 90; // Angle of the part of the arm that actually contacts the
 detentArm2Angle = (numPositions % 2 == 0) ? detentArm1Angle + 180 : detentArm1Angle + 180 - (360 / numPositions / 2); 
 detentArmHeight = 3;
 detentArmThick = 1.5;
-detentArmLength = 15;
+detentArmLength = min(15, ringInnerRadius * 1.3);
 
 // Label rings
 labelRingRingClearanceMax = 0.6; // clearance tapers to allow for easier press fit
