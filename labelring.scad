@@ -17,23 +17,23 @@ module LabelRing() {
         
         // Bottom buffer taper (for easier printing)
         bufferTaperHeight = (labelRingHeight - 2*labelRingInnerBufferHeight - labelRingContactHeight) / 2;
-        bufferTaperScale = labelRingInnerMinRadius / labelRingInnerBufferRadius;
+        bufferTaperScale = labelRingInnerRadius / labelRingInnerBufferRadius;
         translate([0, 0, labelRingInnerBufferHeight])
             linear_extrude(bufferTaperHeight, scale=bufferTaperScale)
                 RegularPolygon(numCorners=numPositions, outerRadius=labelRingInnerBufferRadius, faceOnXAxis=true);
         
         // Top buffer taper (just for symmetry)
-        topBufferTaperMinRadius = ringOuterMinRadius + labelRingRingClearanceMax;
+        topBufferTaperMinRadius = (ringOuterMinRadius + labelRingRingClearanceMax) / regularPolygonInnerRadiusMultiplier(numPositions);
         topBufferTaperScale = labelRingInnerBufferRadius / topBufferTaperMinRadius;
         translate([0, 0, labelRingInnerBufferHeight + bufferTaperHeight + labelRingContactHeight])
             linear_extrude(bufferTaperHeight, scale=topBufferTaperScale)
                 RegularPolygon(numCorners=numPositions, outerRadius=topBufferTaperMinRadius, faceOnXAxis=true);
         
         // Internal (contact) taper from min clearance (at bottom) to max clearance
-        contactScale = topBufferTaperMinRadius / labelRingInnerMinRadius;
+        contactScale = topBufferTaperMinRadius / labelRingInnerRadius;
         translate([0, 0, labelRingInnerBufferHeight + bufferTaperHeight])
             linear_extrude(labelRingContactHeight, scale=contactScale)
-                RegularPolygon(numCorners=numPositions, outerRadius=labelRingInnerMinRadius, faceOnXAxis=true);
+                RegularPolygon(numCorners=numPositions, outerRadius=labelRingInnerRadius, faceOnXAxis=true);
                 
         // Labels
         reverseOrder = true;
