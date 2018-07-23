@@ -68,4 +68,4 @@ module InnerShell() {
                 cylinder(r=lockRingPinRadius, h=lockRingPinHeight);
 };
 
-InnerShell();
+InnerShell();  // no-customizer

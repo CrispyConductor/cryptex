@@ -1,5 +1,6 @@
 use <common.scad>
 
+/*
 // Main parameters
 compartmentDiameter = 40;
 compartmentHeight = 30;
@@ -10,6 +11,9 @@ positionLabels = [
     "U", "V", "W", "X", "Y", "Z"
 ];
 //positionLabels = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" ];
+*/
+include <mainparams.scad>
+
 numPositions = len(positionLabels);
 
 // Lock ring

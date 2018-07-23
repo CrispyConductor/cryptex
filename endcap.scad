@@ -44,4 +44,4 @@ module EndCap() {
     };
 };
 
-EndCap();
+EndCap();  // no-customizer

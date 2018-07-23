@@ -137,4 +137,4 @@ module Ring() {
             DetentArm();
 };
 
-Ring();
+Ring(); // no-customizer

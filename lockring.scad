@@ -62,4 +62,4 @@ module LockRing() {
     };
 };
 
-LockRing();
+LockRing();  // no-customizer

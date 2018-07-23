@@ -58,4 +58,4 @@ module LabelRing() {
                 sphere(r=labelRingKeySphereRadius);
 };
 
-LabelRing();
+LabelRing();  // no-customizer
