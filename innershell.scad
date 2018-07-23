@@ -8,7 +8,11 @@ module InnerShell() {
             square([isThick, isInnerHeight]);
 
     // Base/cap
-    cylinder(h=isBaseThick, r=osBaseRadius);
+    difference() {
+        cylinder(h=isBaseThick, r=osBaseRadius);
+        // Indexing mark
+        ShellBaseLineMark(radius=osBaseRadius, height=isBaseThick+lockRingHeight, numPositions=numPositions);
+    };
         
     // Side ridges
     sideRidgeProtrusion = isOsClearance + osThick; // how far the ridges protrude from the outer edge of the main cylinder

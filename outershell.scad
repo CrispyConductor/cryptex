@@ -54,7 +54,9 @@ module OuterShell() {
     
     // Base
     difference() {
+        // Base cylinder
         cylinder(h=osBaseThick, r=osBaseRadius);
+        
         // Circle around base for symmetry with lock ring separation point
         circHeight = 0.3;
         circDepth = 0.3;
@@ -63,6 +65,9 @@ module OuterShell() {
                 cylinder(r=osBaseRadius, h=circHeight);
                 cylinder(r=osBaseRadius-circDepth, h=circHeight);
             };
+            
+        // Indexing mark
+        ShellBaseLineMark(radius=osBaseRadius, height=osBaseThick, numPositions=numPositions);
     };
 };
 

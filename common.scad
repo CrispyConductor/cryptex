@@ -25,4 +25,24 @@ module LockRingFinger(width, innerRadius, outerRadius, height, spanAngle) {
                 square([outerRadius - innerRadius, width]);
 };
 
-//LockRingFinger(3, 20, 23, 3, 15);
+// Mark on the shell bases pointing to the "solution" line
+module ShellBaseLineMark(radius, height, numPositions, lineWidth=0.4, depth=0.5) {
+    // chevron projected around cylinder
+    
+    spanAngle = 360/numPositions*0.75;
+    translate([0, 0, height])
+        mirror([0, 0, 1])
+            union() {
+                // first line
+                linear_extrude(height, twist=spanAngle, slices=height/0.2)
+                    translate([radius-depth, -lineWidth/2])
+                        square([depth, lineWidth]);
+                // second line
+                linear_extrude(height, twist=-spanAngle, slices=height/0.2)
+                    translate([radius-depth, -lineWidth/2])
+                        square([depth, lineWidth]);
+            };
+};
+
+
+//ShellBaseLineMark(radius=20, height=7, numPositions=26);

@@ -55,6 +55,10 @@ module LockRing() {
         // Top marker dot
         translate([(osBaseRadius+lockSlotOuterRadius)/2, 0, lockRingActualHeight-topMarkerDotDepth])
             cylinder(r=topMarkerDotRadius, h=topMarkerDotDepth);
+        
+        // Indexing mark
+        translate([0, 0, -isBaseThick-lockRingHeight+lockRingActualHeight])
+            ShellBaseLineMark(radius=osBaseRadius, height=isBaseThick+lockRingHeight, numPositions=numPositions);
     };
 };
 

@@ -60,7 +60,7 @@ ringHeightClearance = 0.2;
 ringHeight = ringSpacing - ringHeightClearance;
 ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
-prongCoverHeightClearance = 1;
+prongCoverHeightClearance = 0.6; // amount shells will open before prongs engage on rings
 lockSlotOuterRadius = osOuterRadius + osProngProtrusion + ringProngEndClearance; // outer radius of slots for lock prongs
 
 // Detents
