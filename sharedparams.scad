@@ -62,6 +62,7 @@ ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
 prongCoverHeightClearance = 0.6; // amount shells will open before prongs engage on rings
 lockSlotOuterRadius = osOuterRadius + osProngProtrusion + ringProngEndClearance; // outer radius of slots for lock prongs
+falseLockSlotDepth = 0.2; // depth of false lock slots to make cracking more difficult
 
 // Detents
 detentDepth = 0.85;  // radius of detent cylindrical depressions
@@ -103,6 +104,7 @@ topMarkerDotDepth = 0.4;
 
 // Misc
 latchAngles = [ 0, 180+30, 180-40 ];
+falseLockSlotAngles = [ for (a = latchAngles) a + 360/numPositions*floor(numPositions/2) ];
 
 // System
 $fa = 2;

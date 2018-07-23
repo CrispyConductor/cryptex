@@ -51,6 +51,29 @@ module Ring() {
                 ]);
     };
     
+    module LockProngSlots(angles) {
+        for (ang = angles)
+            rotate([0, 0, -ringSlotSpanAngle/2 + ang])
+                rotate_extrude2(angle=ringSlotSpanAngle)
+                    square([lockSlotOuterRadius, 1000]);
+    };
+    
+    module ProngCoverCutout(zOffset=0) {
+        prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
+        prongCoverInnerRadius = ringOuterMinRadius - ringProngCoverThick;
+        translate([0, 0, ringHeight - prongCoverHeight + zOffset])
+            difference() {
+                cylinder(r=prongCoverInnerRadius, h=prongCoverHeight);
+                // wedge shape
+                rotate_extrude()
+                    polygon([
+                        [ringInnerRadius, 0],
+                        [prongCoverInnerRadius, 0],
+                        [prongCoverInnerRadius, prongCoverInnerRadius - ringInnerRadius]
+                    ]);
+            };
+    };
+    
     difference() {
         // Main shape of ring
         linear_extrude(ringHeight)
@@ -62,25 +85,21 @@ module Ring() {
             };
         
         // Slots for lock prongs
-        for (ang = latchAngles)
-            rotate([0, 0, -ringSlotSpanAngle/2 + ang])
-                rotate_extrude2(angle=ringSlotSpanAngle)
-                    square([lockSlotOuterRadius, 1000]);
+        LockProngSlots(latchAngles);
         
         // Cutout for prong cover
-        prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
-        prongCoverInnerRadius = ringOuterMinRadius - ringProngCoverThick;
-        translate([0, 0, ringHeight - prongCoverHeight])
+        ProngCoverCutout();
+        
+        // False lock slots
+        intersection() {
+            // Slots
+            LockProngSlots(falseLockSlotAngles);
+            // Thin-walled cone
             difference() {
-                cylinder(r=prongCoverInnerRadius, h=prongCoverHeight);
-                // wedge shape
-                rotate_extrude()
-                    polygon([
-                        [ringInnerRadius, 0],
-                        [prongCoverInnerRadius, 0],
-                        [prongCoverInnerRadius, prongCoverInnerRadius - ringInnerRadius]
-                    ]);
+                ProngCoverCutout(-falseLockSlotDepth);
+                ProngCoverCutout();
             };
+        };
         
         // Cutouts for detent arms
         rotate([0, 0, detentArm1Angle])
