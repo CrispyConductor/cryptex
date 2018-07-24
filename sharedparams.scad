@@ -19,9 +19,9 @@ numPositions = len(positionLabels);
 ringRotateClearance = 0.2; // used for a couple of different clearances relating to Z spacing of rings rotating next to each other
 
 // Lock ring
-lockRingHeight = max(compartmentDiameter/10, 4);
-//lockRingHeightClearance = max(0.1 * numRings, 0.35); // clearance for rings to rotate against each other, in addition to ring height clearance
 lockRingHeightClearance = ringRotateClearance;
+lockRingHeight = max(compartmentDiameter/10, 3 + lockRingHeightClearance);
+//lockRingHeightClearance = max(0.1 * numRings, 0.35); // clearance for rings to rotate against each other, in addition to ring height clearance
 lockRingActualHeight = lockRingHeight - lockRingHeightClearance;
 lockRingFingerAngles = [60, 180, 300];
 lockRingFingerWidth = compartmentDiameter * 0.075;
