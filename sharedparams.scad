@@ -18,7 +18,7 @@ numPositions = len(positionLabels);
 
 // Lock ring
 lockRingHeight = max(compartmentDiameter/10, 4);
-lockRingHeightClearance = 0.2; // clearance for rings to rotate against each other, in addition to ring height clearance
+lockRingHeightClearance = max(0.2 * numRings, 0.6); // clearance for rings to rotate against each other, in addition to ring height clearance
 lockRingActualHeight = lockRingHeight - lockRingHeightClearance;
 lockRingFingerAngles = [60, 180, 300];
 lockRingFingerWidth = compartmentDiameter * 0.075;
@@ -60,7 +60,7 @@ ringProngCoverThick = 2;
 ringMinThick = osProngProtrusion + ringProngCoverThick + ringProngEndClearance;
 ringOuterMinRadius = ringInnerRadius + ringMinThick;
 ringOuterRadius = ringOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
-ringHeightClearance = 0.2;
+ringHeightClearance = 0;
 ringHeight = ringSpacing - ringHeightClearance;
 ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
