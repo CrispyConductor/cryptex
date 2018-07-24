@@ -16,10 +16,12 @@ include <mainparams.scad>
 
 numPositions = len(positionLabels);
 
+ringRotateClearance = 0.2; // used for a couple of different clearances relating to Z spacing of rings rotating next to each other
+
 // Lock ring
 lockRingHeight = max(compartmentDiameter/10, 4);
 //lockRingHeightClearance = max(0.1 * numRings, 0.35); // clearance for rings to rotate against each other, in addition to ring height clearance
-lockRingHeightClearance = 0.2;
+lockRingHeightClearance = ringRotateClearance;
 lockRingActualHeight = lockRingHeight - lockRingHeightClearance;
 lockRingFingerAngles = [60, 180, 300];
 lockRingFingerWidth = compartmentDiameter * 0.075;
@@ -34,7 +36,7 @@ isInnerHeight = compartmentHeight;
 isBaseThick = 3;
 isOuterHeight = isInnerHeight + isBaseThick;
 isProngSpanAngle = 10; // angular width of the lock prongs
-isProngOffsetZ = -1; // vertical clearance between each ring and the prongs below it in locked position
+isProngOffsetZ = -(numRings * ringRotateClearance + 0.2); // vertical clearance between each ring and the prongs below it in locked position
 
 // Outer shell
 isOsClearance = 0.3; // Clearance on radius
@@ -61,7 +63,7 @@ ringProngCoverThick = 2;
 ringMinThick = osProngProtrusion + ringProngCoverThick + ringProngEndClearance;
 ringOuterMinRadius = ringInnerRadius + ringMinThick;
 ringOuterRadius = ringOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
-ringHeightClearance = 0.2;
+ringHeightClearance = ringRotateClearance;
 ringHeight = ringSpacing - ringHeightClearance;
 ringSlotClearance = 0.5;
 ringSlotSpanAngle = isProngSpanAngle + 360 * ringSlotClearance / (2 * PI * ringInnerRadius) * 2;
