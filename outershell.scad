@@ -3,7 +3,7 @@ include <rotate_extrude.scad>
 include <common.scad>
 
 module OuterShell() {
-    lockRingSlotHeight = lockRingHeight;
+    lockRingSlotHeight = lockRingActualHeight;
     module LockRingSlot() {
         LockRingFinger(
             width=lockRingFingerWidth+lockRingSlotWidthClearance,
