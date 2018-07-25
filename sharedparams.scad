@@ -55,7 +55,6 @@ lockRingSpanAngle = lockRingHeight / (2 * PI * osOuterRadius) * 360;
 ringSpacing = (isInnerHeight - lockRingHeight) / numRings;
 osRingClearance = 0.3;
 osProngProtrusion = compartmentDiameter * 0.0675 + osRingClearance; // Amount lock prongs protrude from the OD of the outer shell
-echo(compartmentDiameter, osProngProtrusion);
 isProngProtrusion = isOsClearance + osThick + osProngProtrusion; // amount the lock prongs extend from the OD of the inner shell cylinder
 prongHeight = osProngProtrusion + 1; // total height of lock prongs, at the OD of the outer shell
 ringInnerRadius = osOuterRadius + osRingClearance;
@@ -120,4 +119,4 @@ falseLockSlotAngles = [ for (a = latchAngles) a + 360/numPositions*floor(numPosi
 
 // System
 $fa = 2;
-$fs = 0.25;
+$fs = 1;
