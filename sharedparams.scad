@@ -54,12 +54,13 @@ lockRingSpanAngle = lockRingHeight / (2 * PI * osOuterRadius) * 360;
 // Rings
 ringSpacing = (isInnerHeight - lockRingHeight) / numRings;
 osRingClearance = 0.3;
-osProngProtrusion = compartmentDiameter * 0.075; // Amount lock prongs protrude from the OD of the outer shell
+osProngProtrusion = compartmentDiameter * 0.0675 + osRingClearance; // Amount lock prongs protrude from the OD of the outer shell
+echo(compartmentDiameter, osProngProtrusion);
 isProngProtrusion = isOsClearance + osThick + osProngProtrusion; // amount the lock prongs extend from the OD of the inner shell cylinder
 prongHeight = osProngProtrusion + 1; // total height of lock prongs, at the OD of the outer shell
 ringInnerRadius = osOuterRadius + osRingClearance;
 ringProngEndClearance = 0.3; // Clearance between the end of the prongs and the ring
-ringProngCoverThick = 2;
+ringProngCoverThick = min(max(compartmentDiameter / 20, 1), 3);
 ringMinThick = osProngProtrusion + ringProngCoverThick + ringProngEndClearance;
 ringOuterMinRadius = ringInnerRadius + ringMinThick;
 ringOuterRadius = ringOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
@@ -86,7 +87,7 @@ detentArmHeight = max(detentArmHeightMin, min(detentArmHeightMax, detentArmHeigh
 // Label rings
 labelRingRingClearanceMax = 0.3; // clearance tapers to allow for easier press fit
 labelRingRingClearanceMin = 0.2;
-labelRingMinThick = 2;
+labelRingMinThick = max(compartmentDiameter / 20, 1);
 labelRingHeight = ringHeight;
 labelRingInnerHeight = labelRingHeight * 0.8; // thickness/height tapers to prevent label rings from slipping vertically
 labelRingInnerMinRadius = ringOuterMinRadius + labelRingRingClearanceMin;
