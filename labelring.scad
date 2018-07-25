@@ -10,9 +10,10 @@ module LabelRing() {
             RegularPolygon(numCorners=numPositions, outerRadius=labelRingOuterRadius, faceOnXAxis=true);
         
         // Buffer cutouts
-        for (z = [0, labelRingHeight-labelRingInnerBufferHeight])
+        // Small offsets here are to work around some kind of openscad bug that adds a very thin solid layer at certain height values
+        for (z = [-1 + 0.01, labelRingHeight-labelRingInnerBufferHeight - 0.01])
             translate([0, 0, z])
-                linear_extrude(labelRingInnerBufferHeight)
+                linear_extrude(labelRingInnerBufferHeight+1)
                     RegularPolygon(numCorners=numPositions, outerRadius=labelRingInnerBufferRadius, faceOnXAxis=true);
         
         // Bottom buffer taper (for easier printing)
