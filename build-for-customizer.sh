@@ -13,5 +13,6 @@ OutputFile 'outershell.scad'
 OutputFile 'ring.scad'
 OutputFile 'lockring.scad'
 OutputFile 'labelring.scad'
+OutputFile 'endcap.scad'
 OutputFile 'customizer-print-part.scad'
 
