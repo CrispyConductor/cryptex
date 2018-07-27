@@ -52,11 +52,11 @@ module LabelRing() {
             cylinder(r=topMarkerDotRadius, h=topMarkerDotDepth);
     };
     
-    // Key spheres
+    // Key spheres/cylinders
     for (ang = [0 : 360/numPositions : 360])
         rotate([0, 0, ang])
             translate([ringOuterMinRadius + labelRingRingClearanceMax, 0, labelRingHeight/2])
-                sphere(r=labelRingKeySphereRadius);
+                LabelRingKey(labelRingKeyRadius, labelRingKeyHeight);
 };
 
 LabelRing();  // no-customizer

@@ -44,5 +44,13 @@ module ShellBaseLineMark(radius, height, numPositions, lineWidth=0.4, depth=0.5)
             };
 };
 
+module LabelRingKey(radius, height) {
+    cylinder(r=radius, h=height-2*radius, center=true, $fn=10);
+    for (z = [height/2-radius, -height/2+radius])
+        translate([0, 0, z])
+            sphere(r=radius, $fn=10);
+};
+
+//LabelRingKey(1, 4);
 
 //ShellBaseLineMark(radius=20, height=7, numPositions=26);

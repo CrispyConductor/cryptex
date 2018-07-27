@@ -107,11 +107,11 @@ module Ring() {
             mirror([0, 1, 0])
                 DetentArmCutout();
         
-        // Spherical sockets for label ring to snap into
+        // Sockets for label ring to snap into
         for (ang = [0 : 360/numPositions : 360])
             rotate([0, 0, ang])
                 translate([ringOuterMinRadius, 0, ringHeight/2])
-                    sphere(r=labelRingKeySphereRadius);
+                    LabelRingKey(labelRingKeyRadius, labelRingKeyHeight);
         
         // Circle to label primary position
         circThickness = 0.4;

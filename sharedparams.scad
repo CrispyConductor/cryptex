@@ -97,7 +97,8 @@ labelRingInnerBufferHeight = labelRingHeight / 6;
 labelRingContactHeight = labelRingHeight / 3; // amount of label ring in contact with ring (tapering from clearanceMax to clearanceMin)
 labelRingOuterMinRadius = max(labelRingInnerMinRadius, labelRingInnerBufferMinRadius) + labelRingMinThick;
 labelRingOuterRadius = labelRingOuterMinRadius / regularPolygonInnerRadiusMultiplier(numPositions);
-labelRingKeySphereRadius = labelRingRingClearanceMax + 0.1;
+labelRingKeyRadius = labelRingRingClearanceMax + 0.1;
+labelRingKeyHeight = max(labelRingHeight / 5, labelRingKeyRadius * 2);
 labelDepth = 0.5;
 
 // Spacer ring
