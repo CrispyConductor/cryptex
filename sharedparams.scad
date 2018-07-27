@@ -100,6 +100,12 @@ labelRingOuterRadius = labelRingOuterMinRadius / regularPolygonInnerRadiusMultip
 labelRingKeySphereRadius = labelRingRingClearanceMax + 0.1;
 labelDepth = 0.5;
 
+// Spacer ring
+// This part is entirely optional and usually not needed.  If there's extra slack for the
+// rings on the outer shell, it can be measured and a spacer ring can be printed
+// to take up the slack.
+spacerRingHeight = 1.0;
+
 osBaseRadius = labelRingOuterMinRadius;
 //lockRingDetentRadius = lockRingDetentOsProtrusion + osRingClearance;
 lockRingDetentRadius = detentDepth;
