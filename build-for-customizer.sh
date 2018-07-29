@@ -14,5 +14,6 @@ OutputFile 'ring.scad'
 OutputFile 'lockring.scad'
 OutputFile 'labelring.scad'
 OutputFile 'endcap.scad'
+OutputFile 'ringseparatortool.scad'
 OutputFile 'customizer-print-part.scad'
 

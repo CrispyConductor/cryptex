@@ -1,2 +1,4 @@
 *.stl
 *.gcode
+*.png
+cryptex-customizer.scad
