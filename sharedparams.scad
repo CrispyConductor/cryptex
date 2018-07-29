@@ -36,7 +36,7 @@ isInnerHeight = compartmentHeight;
 isBaseThick = 3;
 isOuterHeight = isInnerHeight + isBaseThick;
 isProngSpanAngle = 10; // angular width of the lock prongs
-isProngOffsetZ = -(numRings * ringRotateClearance + 0.2); // vertical clearance between each ring and the prongs below it in locked position
+isProngOffsetZ = -((numRings + 1) * ringRotateClearance); // vertical clearance between each ring and the prongs below it in locked position
 
 // Outer shell
 isOsClearance = 0.3; // Clearance on radius
