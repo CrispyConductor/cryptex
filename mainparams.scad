@@ -13,7 +13,7 @@ numRings = 5;
 positionLabelsStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Customizer part
-part = "innershell"; // [innershell:Inner Shell, outershell:Outer Shell, ring:Ring, lockring:Lock Ring, endcap:End Cap]
+part = "innershell"; // [innershell:Inner Shell, outershell:Outer Shell, ring:Ring, lockring:Lock Ring, endcap:End Cap, ringseparatortool:Ring Separator Tool]
 
 /* [Hidden] */
 
