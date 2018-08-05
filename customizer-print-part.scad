@@ -5,7 +5,7 @@ module print_part() {
 		Ring();
 		LabelRing();
 	} else if (part == "lockring") LockRing();
-	else if (part == "endcap") EndCap()
+	else if (part == "endcap") EndCap();
 	else if (part == "ringseparatortool") RingSeparatorTool();
 };
 
