@@ -26,7 +26,7 @@ module OuterShell() {
                 for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
                     rotate([0, 0, ang])
                         translate([osOuterRadius, 0, osBaseThick])
-                            cylinder(r=detentDepth, h=1000);
+                            cylinder(r=detentDepth, h=1000, $fn=20);
             };
             
             // Add chamfer at bottom (fits into chamfered prong cover on ring)

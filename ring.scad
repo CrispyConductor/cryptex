@@ -27,7 +27,7 @@ module Ring() {
         // Detent key (cylinder)
         intersection() {
             translate([detentArmInnerRadius, 0, 0])
-                cylinder(r=detentDepth, h=detentArmHeight);
+                cylinder(r=detentDepth, h=detentArmHeight, $fn=20);
             // Clip off any part that extends beyond the detent arm
             cylinder(r=detentArmOuterRadius, h=detentArmHeight);
         };
