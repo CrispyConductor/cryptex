@@ -19,7 +19,7 @@ module LockRing() {
                 for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
                     rotate([0, 0, ang])
                         translate([ringInnerRadius, 0, 0])
-                            cylinder(r=lockRingDetentRadius, h=lockRingActualHeight * (2/3));
+                            cylinder(r=lockRingDetentRadius, h=lockRingActualHeight * (2/3), $fn=20);
                 
                 // Cone to taper the detents
                 translate([0, 0, lockRingActualHeight * (1/3)])
