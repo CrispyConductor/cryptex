@@ -73,15 +73,20 @@ falseLockSlotDepth = 0.3; // depth of false lock slots to make cracking more dif
 prongCoverHeight = prongHeight - isProngOffsetZ + prongCoverHeightClearance;
 
 // Detents
+detentCutoutDepthClearance = 0.25;
+detentCutoutHeightClearance = 0.2;
 detentDepth = 0.85;  // radius of detent cylindrical depressions
 detentArm1Angle = 90; // Angle of the part of the arm that actually contacts the detent
 detentArm2Angle = (numPositions % 2 == 0) ? detentArm1Angle + 180 : detentArm1Angle + 180 - (360 / numPositions / 2); 
 detentArmThick = 1.5;
-detentArmLength = min(15, ringInnerRadius * 1.3);
-detentArmHeightMin = 1;
-detentArmHeightMax = ringHeight - prongCoverHeight - detentArmThick - detentDepth - 0.5;
-detentArmHeightIdeal = ringOuterRadius * 0.1; // depends on radius, so as torque increases, resistance linearly increases
+detentArmLength = min(10, ringInnerRadius * 1.3);
+detentArmHeightMin = 1; // minimum amount of surface of lock prongs in contact with rings
+minLockProngEngagement = min(1, osProngProtrusion - 2*osRingClearance);
+detentArmHeightMax = ringHeight - prongCoverHeight - detentArmThick - detentDepth - detentCutoutDepthClearance - detentCutoutHeightClearance + (osProngProtrusion - 2*osRingClearance) + minLockProngEngagement;
+// detentArmHeightIdeal = ringOuterRadius * 0.1; // depends on radius, so as torque increases, resistance linearly increases
+detentArmHeightIdeal = (ringOuterRadius + 35) * 0.0375;
 detentArmHeight = max(detentArmHeightMin, min(detentArmHeightMax, detentArmHeightIdeal));
+echo(detentArmHeightIdeal, detentArmHeight);
 
 // Label rings
 labelRingRingClearanceMax = 0.3; // clearance tapers to allow for easier press fit
