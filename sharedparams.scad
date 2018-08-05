@@ -86,7 +86,6 @@ detentArmHeightMax = ringHeight - prongCoverHeight - detentArmThick - detentDept
 // detentArmHeightIdeal = ringOuterRadius * 0.1; // depends on radius, so as torque increases, resistance linearly increases
 detentArmHeightIdeal = (ringOuterRadius + 35) * 0.0375;
 detentArmHeight = max(detentArmHeightMin, min(detentArmHeightMax, detentArmHeightIdeal));
-echo(detentArmHeightIdeal, detentArmHeight);
 
 // Label rings
 labelRingRingClearanceMax = 0.3; // clearance tapers to allow for easier press fit
