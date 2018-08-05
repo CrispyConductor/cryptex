@@ -36,7 +36,7 @@ module Ring() {
     module DetentArmCutout() {
         cutoutSpanClearanceLength = 1;
         cutoutDepthClearance = 0.5;
-        cutoutHeightClearance = 0.3;
+        cutoutHeightClearance = 0.2;
         cutoutSpanClearanceAngle = cutoutSpanClearanceLength / (2 * PI * ringInnerRadius) * 360;
         cutoutSpanAngle = detentArmSpanAngle + cutoutSpanClearanceAngle;
         cutoutDepth = detentArmThick + detentDepth + cutoutDepthClearance;
