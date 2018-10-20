@@ -16,7 +16,7 @@ module LockRing() {
             // Then tapered along the next third
             difference() {
                 // Cylinders
-                for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
+                for (ang = [-detentArm1Angle : 360 / numPositions : -detentArm1Angle + 360])
                     rotate([0, 0, ang])
                         translate([ringInnerRadius, 0, 0])
                             cylinder(r=lockRingDetentRadius, h=lockRingActualHeight * (2/3), $fn=20);

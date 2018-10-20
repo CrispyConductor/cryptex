@@ -101,9 +101,9 @@ module Ring() {
         };
         
         // Cutouts for detent arms
-        rotate([0, 0, detentArm1Angle])
+        rotate([0, 0, -detentArm1Angle])
             DetentArmCutout();
-        rotate([0, 0, detentArm2Angle])
+        rotate([0, 0, -detentArm2Angle])
             mirror([0, 1, 0])
                 DetentArmCutout();
         
@@ -130,9 +130,9 @@ module Ring() {
     };
     
     // Detent arms
-    rotate([0, 0, detentArm1Angle])
+    rotate([0, 0, -detentArm1Angle])
         DetentArm();
-    rotate([0, 0, detentArm2Angle])
+    rotate([0, 0, -detentArm2Angle])
         mirror([0, 1, 0])
             DetentArm();
 };

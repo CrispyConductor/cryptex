@@ -29,7 +29,7 @@ module InnerShell() {
                 translate([0, 0, isBaseThick])
                     sideRidge();
         // Detents in ridges
-        for (ang = [detentArm1Angle : 360 / numPositions : detentArm1Angle + 360])
+        for (ang = [-detentArm1Angle : 360 / numPositions : -detentArm1Angle + 360])
             rotate([0, 0, ang])
                 translate([isOuterRadius+sideRidgeProtrusion, 0, isBaseThick])
                     cylinder(r=detentDepth, h=1000, $fn=20);
