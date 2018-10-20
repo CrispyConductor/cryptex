@@ -104,6 +104,9 @@ labelRingOuterRadius = labelRingOuterMinRadius / regularPolygonInnerRadiusMultip
 labelRingKeyRadius = labelRingRingClearanceMax + 0.1;
 labelRingKeyHeight = max(labelRingHeight / 5, labelRingKeyRadius * 2);
 labelDepth = 0.5;
+labelRingReverseLabelOrder = true;
+labelRingReverseLabelDirection = false;
+labelRingEmbossLabels = false;
 
 // Spacer ring
 // This part is entirely optional and usually not needed.  If there's extra slack for the

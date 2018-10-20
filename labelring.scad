@@ -4,6 +4,19 @@ use <common.scad>
 
 module LabelRing() {
     
+    module Labels() {
+        reverseOrder = labelRingReverseLabelOrder;
+        reverseDirection = labelRingReverseLabelDirection;
+        labelSize = 2 * PI * labelRingOuterMinRadius / numPositions / 2;
+        for (labelNum = [0 : numPositions - 1])
+            rotate([0, 0, (reverseOrder ? 1 : -1) * (reverseDirection ? -1 : 1) * labelNum * 360/numPositions])
+                translate([labelRingOuterMinRadius, 0, labelRingHeight/2])
+                    rotate([reverseOrder ? 180 : 0, 0, 0])
+                        rotate([0, 90, 0])
+                            linear_extrude(labelDepth*2, center=true)
+                                text(text=positionLabels[labelNum], size=labelSize, halign="center", valign="center");
+    };
+    
     difference() {
         // Outer polygon
         linear_extrude(labelRingHeight)
@@ -37,21 +50,16 @@ module LabelRing() {
                 RegularPolygon(numCorners=numPositions, outerRadius=labelRingInnerRadius, faceOnXAxis=true);
                 
         // Labels
-        reverseOrder = true;
-        reverseDirection = false;
-        labelSize = 2 * PI * labelRingOuterMinRadius / numPositions / 2;
-        for (labelNum = [0 : numPositions - 1])
-            rotate([0, 0, (reverseOrder ? 1 : -1) * (reverseDirection ? -1 : 1) * labelNum * 360/numPositions])
-                translate([labelRingOuterMinRadius, 0, labelRingHeight/2])
-                    rotate([reverseOrder ? 180 : 0, 0, 0])
-                        rotate([0, 90, 0])
-                            linear_extrude(labelDepth*2, center=true)
-                                text(text=positionLabels[labelNum], size=labelSize, halign="center", valign="center");
+        if (!labelRingEmbossLabels)
+            Labels();
         
         // Top marker dot
         translate([(labelRingOuterMinRadius+labelRingInnerBufferMinRadius)/2, 0, labelRingHeight-topMarkerDotDepth])
             cylinder(r=topMarkerDotRadius, h=topMarkerDotDepth);
     };
+    
+    if (labelRingEmbossLabels)
+        Labels();
     
     // Key spheres/cylinders
     for (ang = [0 : 360/numPositions : 360])
