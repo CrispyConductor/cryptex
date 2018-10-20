@@ -38,9 +38,10 @@ module LabelRing() {
                 
         // Labels
         reverseOrder = true;
+        reverseDirection = false;
         labelSize = 2 * PI * labelRingOuterMinRadius / numPositions / 2;
         for (labelNum = [0 : numPositions - 1])
-            rotate([0, 0, (reverseOrder ? 1 : -1) * labelNum * 360/numPositions])
+            rotate([0, 0, (reverseOrder ? 1 : -1) * (reverseDirection ? -1 : 1) * labelNum * 360/numPositions])
                 translate([labelRingOuterMinRadius, 0, labelRingHeight/2])
                     rotate([reverseOrder ? 180 : 0, 0, 0])
                         rotate([0, 90, 0])
